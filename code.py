@@ -2,6 +2,16 @@ import numpy as np
 import pandas as pd
 from scipy import signal
 
+from datetime import time
+from datetime import date
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.figure_factory as ff
+import plotly.graph_objs  as go
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+from math import sqrt
 
 df=pd.read_csv("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/cases.csv",parse_dates=["date"])
 df=df.set_index("date")
@@ -154,3 +164,18 @@ with row2:
 
     fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
     st.plotly_chart(fig, use_container_width=True) 
+
+    
+with row3: 
+    sec= not (plot_value2 is None) #True or False if there is a second plot
+    
+    fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
+    
+    x1=df.index #abbreviation for dates
+    y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
+    
+    #fig1= px.bar(df,x = x1, y=value_labels[plot_value])#,log_y=log)
+    
+    fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    
+    fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
