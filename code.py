@@ -49,8 +49,9 @@ from plotly.subplots import make_subplots
 
 
 st.set_page_config(layout="wide")
-st.title('Greece covid analytics Dashboard')
 
+# display title
+st.title('Greece covid analytics Dashboard')
 
 
 
@@ -165,5 +166,21 @@ with row2:
     fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
     st.plotly_chart(fig, use_container_width=True) 
 
-    
+   
+# ------------------------------------------------------------------- linear regression ------------------------------------------------------#
+# input arrays
+x = np.array(df[['date']])
+y =  np.array(df['new_cases'])
+
+# Create an instance of liner regression
+regressor = LinearRegression()
+regressor.fit(x, y)
+
+Y_pred = regressor.predict(x)
+
+
+### Accuracy of the model
+#"""
+#R2 = r2_score(Y_val, Y_pred_val)
+#st.write(f'R2 value: {R2:.2f}')
 
