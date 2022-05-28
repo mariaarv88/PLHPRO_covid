@@ -170,13 +170,13 @@ with row2:
 # ------------------------------------------------------------------- linear regression ------------------------------------------------------#
 # input arrays
 #x = np.array(df[['date']])
-#y =  np.array(df['new_cases'])
+#y = np.array(df['new_cases'])
 
 # Create an instance of liner regression
 regressor = LinearRegression()
-regressor.fit(x, y)
+#regressor.fit(x, y)
 
-Y_pred = regressor.predict(x)
+#Y_pred = regressor.predict(x)
 
 
 ### Accuracy of the model
