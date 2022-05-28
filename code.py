@@ -169,8 +169,8 @@ with row2:
    
 # ------------------------------------------------------------------- linear regression ------------------------------------------------------#
 # input arrays
-x = np.array(df[['date']])
-y =  np.array(df['new_cases'])
+#x = np.array(df[['date']])
+#y =  np.array(df['new_cases'])
 
 # Create an instance of liner regression
 regressor = LinearRegression()
@@ -184,3 +184,12 @@ Y_pred = regressor.predict(x)
 #R2 = r2_score(Y_val, Y_pred_val)
 #st.write(f'R2 value: {R2:.2f}')
 
+
+# Plot
+fig, ax = plt.subplots(figsize=(5, 3))
+ax.scatter(x=df[['date']], y=df['new_cases'])
+plt.xlabel('date')
+plt.ylabel('new_cases')
+st.pyplot(fig)
+    
+    
