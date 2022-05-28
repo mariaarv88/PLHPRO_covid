@@ -121,7 +121,7 @@ m_.metric(label="Mortality (Greece)",value= m)
 m_global_.metric(label="Mortality (Global)",value= m_global)
 CFR_.metric(label="Case Fatality Rate",value= round(CFR,3))
                 
-row_spacer_start, row1, row2, row3, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 0.1))
+row_spacer_start, row1, row2, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 0.1))
 
 with row1:
     #add here everything you want in first column
