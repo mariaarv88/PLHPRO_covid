@@ -166,16 +166,4 @@ with row2:
     st.plotly_chart(fig, use_container_width=True) 
 
     
-with row3: 
-    sec= not (plot_value2 is None) #True or False if there is a second plot
-    
-    fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
-    
-    x1=df.index #abbreviation for dates
-    y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
-    
-    #fig1= px.bar(df,x = x1, y=value_labels[plot_value])#,log_y=log)
-    
-    fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
-    
-    fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
+
