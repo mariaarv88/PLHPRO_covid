@@ -122,7 +122,7 @@ m_.metric(label="Mortality (Greece)",value= m)
 m_global_.metric(label="Mortality (Global)",value= m_global)
 CFR_.metric(label="Case Fatality Rate",value= round(CFR,3))
                 
-row_spacer_start, row1, row2, row3, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 6.4, 0.1))
+row_spacer_start, row1, row2, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 0.1))
 
 with row1:
     #add here everything you want in first column
@@ -167,7 +167,25 @@ with row2:
     st.plotly_chart(fig, use_container_width=True) 
 
     
-with row3:    
+    
+row_spacer_start, R0_, m_,m_global_, CFR_  = st.columns((0.5,1.0,1.0,1.0,1.0)) 
+with row_spacer_start:
+    st.markdown("Epidemiological Indicators")
+R0_.metric(label="Basic Reproduction Number - Ro",value= R0)
+m_.metric(label="Mortality (Greece)",value= m)
+m_global_.metric(label="Mortality (Global)",value= m_global)
+CFR_.metric(label="Case Fatality Rate",value= round(CFR,3))
+                
+row_spacer_start, row1, row2, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 0.1))
+
+with row1:
+    #add here everything you want in first column
+    plot_value = st.selectbox ("Variable", list(value_labels.keys()), key = 'value_key') #take all the keys from value_labels dictionary
+    plot_value2 = st.selectbox ("Second Variable", [None]+list(value_labels.keys()), key = 'value_key')
+    smooth = st.checkbox("Add smooth curve")
+   
+    
+with row2:    
     sec= not (plot_value2 is None) #True or False if there is a second plot
     
     fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
@@ -201,7 +219,6 @@ with row3:
 
     fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
     st.plotly_chart(fig, use_container_width=True) 
-
    
 # ------------------------------------------------------------------- linear regression ------------------------------------------------------#
 # input arrays
