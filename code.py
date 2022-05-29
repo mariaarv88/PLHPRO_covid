@@ -231,7 +231,15 @@ with row2:
     
     #fig1= px.bar(df,x = x1, y=[plot_value])#,log_y=log)
     
+    lm = LinearRegression()
+    model = lm.fit(x, y)
+    y_pred = lm.predict(x)
+    r_squared = lm.r2_score(x, y)
+    
     fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    
+    figline = sns.regplot(x='dates', y='new_cases', data=df)
+    st.pyplot(figline)
     
     fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
        
