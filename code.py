@@ -229,13 +229,13 @@ if st.checkbox("Display dataset", False):
 # -----------------------------------------------------------------------------------------------------#
 
 with row2:      
-    sec= not (plot_value2 is None) #True or False if there is a second plot
+    #sec= not (plot_value2 is None) #True or False if there is a second plot
         
     x_LR = df.index #abbreviation for dates
     y_LR = df["new_cases"] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
     
     #fig1= px.bar(df,x = x1, y=value_labels[plot_value])#,log_y=log)
-    #fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    fig_LR= px.bar(df,x = x_LR, y=y_LR) #bar plot named as fig1
     
     fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
     st.plotly_chart(fig, use_container_width=True) 
