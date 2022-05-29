@@ -82,7 +82,7 @@ for Row in Rows: #Row is every key in dictionary Rows
     cols = st.columns(tuple([0.5]+[1]*len(Rows[Row]))) #tuple([0.5]+[1]*len(Rows[Row]))= (0.5,1,1,1,1)
     
     with cols[0]:
-        st.st.subheader(Row)
+        st.subheader(Row)
         
     #zip
     #for i,j,k in zip(['a','b','c'],[1,2,3],[7,8,9]):
