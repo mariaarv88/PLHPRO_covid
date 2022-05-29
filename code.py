@@ -241,6 +241,7 @@ with row2:
     #figline = sns.regplot(x='dates', y='new_cases', data=df)
     #st.pyplot(figline)
     
+    df=pd.read_csv("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/cases.csv",parse_dates=["date"])
     df_lm = px.df.tips()
     fig_lm = px.scatter(df_lm, x="independent", y="dependent", trendline="ols")
     fig_lm.show()
