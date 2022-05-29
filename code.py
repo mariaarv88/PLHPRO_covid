@@ -225,19 +225,14 @@ if st.checkbox("Display dataset", False):
 
 with row2:      
     sec= not (plot_value2 is None) #True or False if there is a second plot
-    
-    fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
-    
+        
     x_LR = df.index #abbreviation for dates
     y_LR = df["new_cases"] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
     
     #fig1= px.bar(df,x = x1, y=value_labels[plot_value])#,log_y=log)
     #fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
-    fig_linear = px.scatter(df, x=x_LR, y=y_LR, trendline='ols', title='Ordinary Least Squares Regression')
-    
-    #fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
-    #fig.layout.yaxis.title=plot_value #add label
-    
+    fig_LR = px.scatter(df, x=df["date"], y=df["new_cases"], trendline='ols', title='Ordinary Least Squares Regression') 
+
     #lm = LinearRegression()
     #model = lm.fit(x1, y1)
     #y1_pred = lm.predict(x1)
@@ -251,7 +246,7 @@ with row2:
     #fig_lm = px.scatter(df, x=df["id"], y=df["new_cases"], trendline="ols")
     
     
-    fig_lm.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
+    fig_LR.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
     st.plotly_chart(fig_lm, use_container_width=True) 
 
     #fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
