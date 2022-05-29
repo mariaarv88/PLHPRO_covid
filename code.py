@@ -176,19 +176,17 @@ with row2:
 # ------------------------------------------------------- page row 2 ---------------------------------------------------------------------  
 # ----------------------------------------------------------------------------------------------------------------------------------------
 row_spacer_start_row2, dependent_variable  = st.columns((0.1,4.0)) 
-
                 
 row_spacer_start, row1, row2, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 0.1))
-
 
 with row1:
     #add here everything you want in first column
     #plot_value = st.selectbox ("Linear regression", list(value_labels.keys()), key = 'value_key') #take all the keys from value_labels dictionary
     st.subheader("Linear Regression")
 
-if st.checkbox("Display data", False):
-    st.subheader("Show covid dataset")
-    st.write(df) 
+    if st.checkbox("Display data", False):
+        st.subheader("Show covid dataset")
+        st.write(df) 
     
 # ----------------------------------------- linear regression -----------------------------------------#
 # input arrays
