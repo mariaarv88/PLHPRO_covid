@@ -184,9 +184,9 @@ with row1:
     #plot_value = st.selectbox ("Linear regression", list(value_labels.keys()), key = 'value_key') #take all the keys from value_labels dictionary
     st.subheader("Linear Regression")
 
-    if st.checkbox("Display dataset", False):
-        st.subheader("COVID Greece dataset")
-        st.write(df) 
+if st.checkbox("Display dataset", False):
+    st.subheader("COVID Greece dataset")
+    st.write(df) 
     
 # ----------------------------------------- linear regression -----------------------------------------#
 # input arrays
