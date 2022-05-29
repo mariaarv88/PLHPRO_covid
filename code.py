@@ -185,6 +185,10 @@ with row1:
     #add here everything you want in first column
     #plot_value = st.selectbox ("Linear regression", list(value_labels.keys()), key = 'value_key') #take all the keys from value_labels dictionary
     st.subheader("Linear Regression")
+
+if st.checkbox("Display data", False):
+    st.subheader("Show covid dataset")
+    st.write(df) 
     
 # ----------------------------------------- linear regression -----------------------------------------#
 # input arrays
@@ -248,8 +252,6 @@ with row2:
     st.plotly_chart(fig, use_container_width=True) 
    
 
-if st.checkbox("Display data", False):
-    st.subheader("Show covid dataset")
-    st.write(df)
+
     
     
