@@ -210,7 +210,7 @@ r_squared = lm.r2_score(x, y)
 # Plot
 with row2: 
     fig, ax = plt.subplots(figsize=(5, 3))
-    ax.scatter(x=df[['id']], y=df['new_cases'])
+    ax.scatter(x=df['id'], y=df['new_cases'])
     sns.regplot(x='date', y='new_cases', data=df)
     plt.xlabel('date')
     plt.ylabel('new_cases')
