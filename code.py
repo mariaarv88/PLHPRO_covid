@@ -208,7 +208,7 @@ r_squared = lm.r2_score(x, y)
 
 
 # Plot
-with row2: 
+#with row2: 
     fig, ax = plt.subplots(figsize=(5, 3))
     ax.scatter(x=df['id'], y=df['new_cases'])
     sns.regplot(x='date', y='new_cases', data=df)
@@ -220,33 +220,33 @@ with row2:
 
 # -----------------------------------------------------------------------------------------------------#
 
-#with row2:    
-#    sec= not (plot_value2 is None) #True or False if there is a second plot
+with row2:    
+    sec= not (plot_value2 is None) #True or False if there is a second plot
     
 
-#   fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
+   fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
     
-#    x1=df.index #abbreviation for dates
-#    y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
+    x1=df.index #abbreviation for dates
+    y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
     
     #fig1= px.bar(df,x = x1, y=
-#    [plot_value])#,log_y=log)
+    [plot_value])#,log_y=log)
     
-#    fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
     
-#    fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
+    fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
        
     #fig.layout.yaxis.title=plot_value #add label
         
-#    if sec:
-#        x2=df.index
-#        y2=df[value_labels[plot_value2]]
-#        figsec=px.line(x = x2, y=y2)#,log_y=log)
-#        figsec.update_traces(yaxis="y2")
+    if sec:
+        x2=df.index
+        y2=df[value_labels[plot_value2]]
+        figsec=px.line(x = x2, y=y2)#,log_y=log)
+        figsec.update_traces(yaxis="y2")
         
-#        fig.add_traces(figsec.data) #add figsec to the fig (what we will show at the end) 
-#        fig.layout.yaxis2.title=plot_value2
+        fig.add_traces(figsec.data) #add figsec to the fig (what we will show at the end) 
+        fig.layout.yaxis2.title=plot_value2
 
-#    fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
-#    st.plotly_chart(fig, use_container_width=True) 
+    fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
+    st.plotly_chart(fig, use_container_width=True) 
    
