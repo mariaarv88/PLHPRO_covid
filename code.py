@@ -248,7 +248,7 @@ with row2:
     st.plotly_chart(fig, use_container_width=True) 
    
 
-if st.sidebar.checkbox("Display data", False):
+if st.checkbox("Display data", False):
     st.subheader("Show covid dataset")
     st.write(df)
     
