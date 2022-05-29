@@ -229,8 +229,7 @@ with row2:
     x1=df.index #abbreviation for dates
     y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
     
-    #fig1= px.bar(df,x = x1, y=
-    [plot_value])#,log_y=log)
+    #fig1= px.bar(df,x = x1, y=[plot_value])#,log_y=log)
     
     fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
     
