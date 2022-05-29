@@ -231,10 +231,10 @@ with row2:
     
     #fig1= px.bar(df,x = x1, y=[plot_value])#,log_y=log)
     
-    lm = LinearRegression()
-    model = lm.fit(x, y)
-    y_pred = lm.predict(x)
-    r_squared = lm.r2_score(x, y)
+    #lm = LinearRegression()
+    #model = lm.fit(x, y)
+    #y_pred = lm.predict(x)
+    #r_squared = lm.r2_score(x, y)
     
     fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
     
