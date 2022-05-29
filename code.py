@@ -190,15 +190,15 @@ with row1:
     
 # ----------------------------------------- linear regression -----------------------------------------#
 # input arrays
-x = np.array(df[['id']])
-y = np.array(df['new_cases'])
+#x = np.array(df[['id']])
+#y = np.array(df['new_cases'])
 
 # Create an instance of liner regression
-lm = LinearRegression()
-model = lm.fit(x, y)
+#lm = LinearRegression()
+#model = lm.fit(x, y)
 
-y_pred = lm.predict(x)
-r_squared = lm.r2_score(x, y)
+#y_pred = lm.predict(x)
+#r_squared = lm.r2_score(x, y)
 
 
 ### Accuracy of the model
@@ -209,12 +209,12 @@ r_squared = lm.r2_score(x, y)
 
 # Plot
 #with row2: 
-fig, ax = plt.subplots(figsize=(5, 3))
-ax.scatter(x=df['id'], y=df['new_cases'])
-sns.regplot(x='date', y='new_cases', data=df)
-plt.xlabel('date')
-plt.ylabel('new_cases')
-st.pyplot(fig)
+#fig, ax = plt.subplots(figsize=(5, 3))
+#ax.scatter(x=df['id'], y=df['new_cases'])
+#sns.regplot(x='date', y='new_cases', data=df)
+#plt.xlabel('date')
+#plt.ylabel('new_cases')
+#st.pyplot(fig)
 
 
 
@@ -224,7 +224,7 @@ with row2:
     sec= not (plot_value2 is None) #True or False if there is a second plot
     
 
-   fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
+    fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
     
     x1=df.index #abbreviation for dates
     y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
