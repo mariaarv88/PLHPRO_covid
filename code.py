@@ -121,6 +121,7 @@ for Row in Rows: #Row is every key in dictionary Rows
             else:
                 ci.metric(label=label,value= round(val,2), delta = str(round(dif,2)), delta_color = 'inverse')
 
+                
 # ----------------------------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------- page row 1 ---------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------------------------
@@ -227,27 +228,27 @@ with row2:
     
     fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
     
-    x1=df.index #abbreviation for dates
-    y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
+    x_LR = df.index #abbreviation for dates
+    y_LR = df["new_cases"] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
     
     #fig1= px.bar(df,x = x1, y=value_labels[plot_value])#,log_y=log)
-    fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    #fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    fig_linear = px.scatter(df, x=x_LR, y=y_LR, trendline='ols', title='Ordinary Least Squares Regression')
     
-    fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
+    #fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
     #fig.layout.yaxis.title=plot_value #add label
     
-    
-    lm = LinearRegression()
-    model = lm.fit(x1, y1)
-    y1_pred = lm.predict(x1)
-    r_squared = lm.r2_score(x, y)
+    #lm = LinearRegression()
+    #model = lm.fit(x1, y1)
+    #y1_pred = lm.predict(x1)
+    #r_squared = lm.r2_score(x, y)
         
     #figline = sns.regplot(x='dates', y='new_cases', data=df)
     #st.pyplot(figline)
     
-    df=pd.read_csv("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/cases.csv",parse_dates=["date"])
+    #df=pd.read_csv("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/cases.csv",parse_dates=["date"])
     #df_lm = px.df.tips()
-    fig_lm = px.scatter(df, x=df["id"], y=df["new_cases"], trendline="ols")
+    #fig_lm = px.scatter(df, x=df["id"], y=df["new_cases"], trendline="ols")
     
     
     fig_lm.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
@@ -260,6 +261,5 @@ with row2:
 
 
 
-#px.scatter(tips, x='total_bill', y='tip', trendline='ols', title='Ordinary Least Squares Regression')
     
     
