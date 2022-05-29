@@ -238,8 +238,13 @@ with row2:
     
     fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
     
-    figline = sns.regplot(x='dates', y='new_cases', data=df)
-    st.pyplot(figline)
+    #figline = sns.regplot(x='dates', y='new_cases', data=df)
+    #st.pyplot(figline)
+    
+    df_lm = px.df.tips()
+    fig_lm = px.scatter(df_lm, x="independent", y="dependent", trendline="ols")
+    fig_lm.show()
+    
     
     fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
        
