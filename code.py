@@ -170,8 +170,9 @@ with row2:
     
 # ------------------------------------------------------- page row 2 ---------------------------------------------------------------------  
 row_spacer_start_row2, dependent_variable  = st.columns((0.1,4.0)) 
-with row_spacer_start_row2:
-    st.markdown("Linear regression")
+
+#with row_spacer_start_row2:
+#    st.markdown("Linear regression")
                 
 row_spacer_start, row1, row2, row_spacer_end  = st.columns((0.1, 1.0, 6.4, 0.1))
 
