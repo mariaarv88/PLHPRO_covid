@@ -82,7 +82,7 @@ for Row in Rows: #Row is every key in dictionary Rows
     cols = st.columns(tuple([0.5]+[1]*len(Rows[Row]))) #tuple([0.5]+[1]*len(Rows[Row]))= (0.5,1,1,1,1)
     
     with cols[0]:
-        st.markdown(Row)
+        st.st.subheader(Row)
         
     #zip
     #for i,j,k in zip(['a','b','c'],[1,2,3],[7,8,9]):
@@ -121,7 +121,7 @@ for Row in Rows: #Row is every key in dictionary Rows
 # ----------------------------------------------------------------------------------------------------------------------------------------
 row_spacer_start, R0_, m_,m_global_, CFR_  = st.columns((0.5,1.0,1.0,1.0,1.0)) 
 with row_spacer_start:
-    st.markdown("Epidemiological Indicators")
+    st.subheader("Epidemiological Indicators")
 R0_.metric(label="Basic Reproduction Number - Ro",value= R0)
 m_.metric(label="Mortality (Greece)",value= m)
 m_global_.metric(label="Mortality (Global)",value= m_global)
