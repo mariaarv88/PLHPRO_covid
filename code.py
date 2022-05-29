@@ -1,3 +1,4 @@
+# ------------------------------------------------------ import libraries -------------------------------------------------
 import numpy as np
 import pandas as pd
 from scipy import signal
@@ -7,20 +8,27 @@ from scipy import signal
 import matplotlib.pyplot as plt
 import seaborn as sns
 #import plotly.figure_factory as ff
-#import plotly.graph_objs  as go
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 #from math import sqrt
 #from sklearn import preprocessing
 
+import streamlit as st
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
+
+# create the dataframe
 df=pd.read_csv("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/cases.csv",parse_dates=["date"])
 df=df.set_index("date")
 df=df.drop(["id"],axis=1)
 df["new_positive_tests"]=df.positive_tests.diff()
 df["new_vaccinations"]=df['total_vaccinations'].diff()
 
+
+# calculate the epidemiologic factors
 CFR=np.nansum(df["new_deaths"])/np.nansum(df["new_cases"])
 R0=2.79
 m=0.0013
@@ -44,11 +52,8 @@ df["Rt"]=np.nan
 for i in range(len(df)):
     df["Rt"].iloc[i]=Rt(df,i)
     
-import streamlit as st
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
+# ------------------------------------------------------ streamlit page layout -------------------------------------------------
 # Use the full page instead of a narrow central column
 st.set_page_config(layout="wide")
 
@@ -200,12 +205,10 @@ if st.checkbox("Display dataset", False):
 #y_pred = lm.predict(x)
 #r_squared = lm.r2_score(x, y)
 
-
 ### Accuracy of the model
 #"""
 #R2 = r2_score(Y_val, Y_pred_val)
 #st.write(f'R2 value: {R2:.2f}')
-
 
 # Plot
 #with row2: 
@@ -216,52 +219,52 @@ if st.checkbox("Display dataset", False):
 #plt.ylabel('new_cases')
 #st.pyplot(fig)
 
-
-
 # -----------------------------------------------------------------------------------------------------#
 
+
 with row2:    
-    sec= not (plot_value2 is None) #True or False if there is a second plot
+    #sec= not (plot_value2 is None) #True or False if there is a second plot
     
 
-    fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
+    #fig = make_subplots(specs=[[{"secondary_y": sec}]]) #plotly function, define fig which will be show at user
     
     x1=df.index #abbreviation for dates
     y1=df[value_labels[plot_value]] #abbreviation for ploting values, translate from shown names to column names (from value_labels dictionary)
     
     #fig1= px.bar(df,x = x1, y=[plot_value])#,log_y=log)
     
-    #lm = LinearRegression()
-    #model = lm.fit(x, y)
-    #y_pred = lm.predict(x)
+    lm = LinearRegression()
+    model = lm.fit(x1, y1)
+    y1_pred = lm.predict(x1)
     #r_squared = lm.r2_score(x, y)
     
-    fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
+    #fig1= px.bar(df,x = x1, y=y1) #bar plot named as fig1
     
     #figline = sns.regplot(x='dates', y='new_cases', data=df)
     #st.pyplot(figline)
     
     df=pd.read_csv("https://raw.githubusercontent.com/Sandbird/covid19-Greece/master/cases.csv",parse_dates=["date"])
-    df_lm = px.df.tips()
-    fig_lm = px.scatter(df_lm, x="independent", y="dependent", trendline="ols")
+    #df_lm = px.df.tips()
+    fig_lm = px.scatter(df, x=df["id"], y=df["new_cases"], trendline="ols")
     fig_lm.show()
+    fig_lm.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
+    st.plotly_chart(fig_lm, use_container_width=True) 
     
-    
-    fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
+    #fig.add_traces(fig1.data) #add to the fig (what is going to be show to the user) the fig1
        
     #fig.layout.yaxis.title=plot_value #add label
         
-    if sec:
-        x2=df.index
-        y2=df[value_labels[plot_value2]]
-        figsec=px.line(x = x2, y=y2)#,log_y=log)
-        figsec.update_traces(yaxis="y2")
+    #if sec:
+    #    x2=df.index
+    #    y2=df[value_labels[plot_value2]]
+    #    figsec=px.line(x = x2, y=y2)#,log_y=log)
+    #    figsec.update_traces(yaxis="y2")
         
-        fig.add_traces(figsec.data) #add figsec to the fig (what we will show at the end) 
-        fig.layout.yaxis2.title=plot_value2
+    #    fig.add_traces(figsec.data) #add figsec to the fig (what we will show at the end) 
+    #    fig.layout.yaxis2.title=plot_value2
 
-    fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
-    st.plotly_chart(fig, use_container_width=True) 
+    #fig.update_layout(title_x=0,margin= dict(l=0,r=10,b=10,t=30), yaxis_title=plot_value, xaxis_title=None)
+    #st.plotly_chart(fig, use_container_width=True) 
    
 
 
